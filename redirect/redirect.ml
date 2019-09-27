@@ -88,7 +88,7 @@ let with_channel_from_string s f =
 
 let with_channel_to_buffer ?chunk_size buffer f =
   with_pipe @@ fun in_channel out_channel ->
-    let _thread = () |> Thread.create @@ fun () -> 
+    let _thread = () |> Thread.create @@ fun () ->
       add_channel_to_the_end ?chunk_size buffer in_channel in
     f out_channel
 
@@ -101,7 +101,7 @@ let with_stdin_from_string s f =
   with_channel_from_string s @@ fun channel -> with_stdin_from channel f
 
 let with_stdout_to_buffer ?chunk_size buffer f =
-  with_channel_to_buffer ?chunk_size buffer @@ fun channel -> 
+  with_channel_to_buffer ?chunk_size buffer @@ fun channel ->
     with_stdout_to channel f
 
 let with_stdout_to_string ?initial_size ?chunk_size f =
