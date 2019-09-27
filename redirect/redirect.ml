@@ -1,22 +1,28 @@
 let read_and_close channel f =
-  try
-    let result = f () in
-    close_in channel;
-    result
-  with exn ->
-    let bt = Printexc.get_raw_backtrace () in
-    close_in_noerr channel;
-    Printexc.raise_with_backtrace exn bt
+  match
+    try Ok (f ())
+    with exn -> Error exn
+  with
+  | Ok result ->
+      close_in channel;
+      result
+  | Error exn ->
+      let bt = Printexc.get_raw_backtrace () in
+      close_in_noerr channel;
+      Printexc.raise_with_backtrace exn bt
 
 let write_and_close channel f =
-  try
-    let result = f () in
-    close_out channel;
-    result
-  with exn ->
-    let bt = Printexc.get_raw_backtrace () in
-    close_out_noerr channel;
-    Printexc.raise_with_backtrace exn bt
+  match
+    try Ok (f ())
+    with exn -> Error exn
+  with
+  | Ok result ->
+      close_out channel;
+      result
+  | Error exn ->
+      let bt = Printexc.get_raw_backtrace () in
+      close_out_noerr channel;
+      Printexc.raise_with_backtrace exn bt
 
 let rec add_channel_to_the_end  ?(chunk_size = 1024) buffer channel =
   match Buffer.add_channel buffer channel chunk_size with
