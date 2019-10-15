@@ -1,4 +1,4 @@
-(lang dune 1.10)
+(lang dune 1.11)
 
 (generate_opam_files true)
 
@@ -17,5 +17,5 @@
 Redirect channels to files, strings...
 ")
  (depends
-  (dune (>= 1.10.0))
+  (dune (>= 1.11.0))
   (stdcompat (>= 10))))
