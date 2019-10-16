@@ -4,7 +4,7 @@ snapshot:
       - master
   script:
     - git checkout snapshot
-    - git reset --hard originmaster
+    - git reset --hard origin/master
     - git reset --soft origin/snapshot
     - dune build redirect.opam
     - git add --force redirect.opam
