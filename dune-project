@@ -3,6 +3,7 @@
 (generate_opam_files true)
 
 (license BSD)
+(name redirect)
 (maintainers "Thierry Martinez <thierry.martinez@inria.fr>")
 (authors "Thierry Martinez <thierry.martinez@inria.fr>")
 (source (uri "git+https://gitlab.inria.fr/tmartine/redirect"))
