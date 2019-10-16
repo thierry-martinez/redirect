@@ -6,4 +6,6 @@ snapshot:
     - dune build redirect.opam
     - git add --force redirect.opam
     - git commit --message="Snapshot for commit $(git rev-parse master)"
+    - git remote set-url origin
+      $(git remote get-url origin | sed 's#^https://\([^/]*\)/#git@\1:#')
     - git push
