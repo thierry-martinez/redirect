@@ -1,11 +1,16 @@
 snapshot:
+  only:
+    refs: master
   script:
     - git checkout snapshot
     - git reset --hard master
     - git reset --soft origin/snapshot
     - dune build redirect.opam
     - git add --force redirect.opam
-    - git commit --message="Snapshot for commit $(git rev-parse master)"
-    - git remote set-url origin $(git remote get-url origin
-        | sed 's#^https://\([^/@]*@\)\?\([^/@]*\)/#git@\2:#')
-    - git push
+    - if
+        git commit --message="Snapshot for commit $(git rev-parse master)";
+      then
+        git remote set-url origin $(git remote get-url origin
+          | sed 's#^https://\([^/@]*@\)\?\([^/@]*\)/#git@\2:#');
+        git push;
+      fi
