@@ -1,6 +1,7 @@
 snapshot:
   only:
-    refs: master
+    refs:
+      - master
   script:
     - git checkout snapshot
     - git reset --hard master
