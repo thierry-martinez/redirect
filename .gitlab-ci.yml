@@ -1,0 +1,9 @@
+snapshot:
+  script:
+    - git checkout snapshot
+    - git reset --hard master
+    - git reset --soft origin/snapshot
+    - dune build redirect.opam
+    - git add --force redirect.opam
+    - git commit --message="Snapshot for commit $(git rev-parse master)"
+    - git push
