@@ -13,5 +13,5 @@ if git commit --message="Snapshot for commit $(git rev-parse origin/master)"
 then
   git remote set-url origin $(git remote get-url origin \
     | sed 's#^https://\([^/@]*@\)\?\([^/@]*\)/#git@\2:#')
-  git push origin
+  git push --set-upstream origin snapshot
 fi
