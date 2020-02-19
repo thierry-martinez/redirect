@@ -1,4 +1,4 @@
-# Redirect channels in OCaml
+# `redirect`: Redirect channels in OCaml
 
 This library provides convenient functions for piping input and output
 channels with strings and buffers. See [`redirect.mli`] for details.
