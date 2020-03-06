@@ -1,30 +1,28 @@
+let result_of_exn (f : unit -> 'a) : ('a, Printexc.raw_backtrace) result =
+  try
+    Ok (f ())
+  with exn ->
+    Error (exn, Printexc.get_raw_backtrace ())
+
 let read_and_close channel f =
-  match
-    try Ok (f ())
-    with exn -> Error exn
-  with
+  match result_of_exn f with
   | Ok result ->
       close_in channel;
       result
-  | Error exn ->
-      let bt = Printexc.get_raw_backtrace () in
+  | Error (exn, bt) ->
       close_in_noerr channel;
       Printexc.raise_with_backtrace exn bt
 
 let write_and_close channel f =
-  match
-    try Ok (f ())
-    with exn -> Error exn
-  with
+  match result_of_exn f with
   | Ok result ->
       close_out channel;
       result
-  | Error exn ->
-      let bt = Printexc.get_raw_backtrace () in
+  | Error (exn, bt) ->
       close_out_noerr channel;
       Printexc.raise_with_backtrace exn bt
 
-let rec add_channel_to_the_end  ?(chunk_size = 1024) buffer channel =
+let rec add_channel_to_the_end ?(chunk_size = 1024) buffer channel =
   match Buffer.add_channel buffer channel chunk_size with
   | () -> add_channel_to_the_end ~chunk_size buffer channel
   | exception End_of_file -> ()
