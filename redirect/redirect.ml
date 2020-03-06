@@ -1,4 +1,4 @@
-let result_of_exn (f : unit -> 'a) : ('a, Printexc.raw_backtrace) result =
+let result_of_exn (f : unit -> 'a) : ('a, exn * Printexc.raw_backtrace) result =
   try
     Ok (f ())
   with exn ->
