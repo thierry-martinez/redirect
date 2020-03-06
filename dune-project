@@ -18,6 +18,6 @@
 Redirect channels to files, strings...
 ")
  (depends
-  (ocaml (and (>= 4.03.0) (< 4.11.0)))
+  (ocaml (and (>= 4.03.0) (< 4.12.0)))
   (dune (>= 1.11.0))
   (stdcompat (>= 10))))
