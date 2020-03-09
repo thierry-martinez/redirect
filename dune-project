@@ -6,10 +6,10 @@
 (name redirect)
 (maintainers "Thierry Martinez <thierry.martinez@inria.fr>")
 (authors "Thierry Martinez <thierry.martinez@inria.fr>")
-(source (uri "git+https://github.com/thierry.martinez/redirect"))
-(homepage "https://github.com/thierry.martinez/redirect")
-(bug_reports "https://github.com/thierry.martinez/redirect")
-(documentation "https://github.com/thierry.martinez/redirect")
+(source (uri "git+https://github.com/thierry-martinez/redirect"))
+(homepage "https://github.com/thierry-martinez/redirect")
+(bug_reports "https://github.com/thierry-martinez/redirect")
+(documentation "https://github.com/thierry-martinez/redirect")
 
 (package
  (name redirect)
