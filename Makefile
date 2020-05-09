@@ -1,13 +1,23 @@
+DUNE=dune
+FLAGS=
+
 .PHONY : all
-all : _build/redirect/redirect.cmxa redirect.opam
+all :
+	$(DUNE) build $(FLAGS)
 
-_build/redirect/redirect.cmxa :
-	dune build redirect/redirect.cmxa
-
-redirect.opam : dune-project
-	dune build redirect.opam
+.PHONY : clean
+clean :
+	$(DUNE) clean $(FLAGS)
 
 .PHONY : install
 install :
-	dune build @install
-	dune install
+	$(DUNE) build @install $(FLAGS)
+	$(DUNE) install $(FLAGS)
+
+.PHONY : doc
+doc :
+	$(DUNE) build @doc $(FLAGS)
+
+.PHONY : test
+test :
+	$(DUNE) runtest $(FLAGS)
