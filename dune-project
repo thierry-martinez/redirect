@@ -2,8 +2,8 @@
 
 (generate_opam_files true)
 
-(license BSD)
 (name redirect)
+(license "BSD-2-Clause")
 (maintainers "Thierry Martinez <thierry.martinez@inria.fr>")
 (authors "Thierry Martinez <thierry.martinez@inria.fr>")
 (source (uri "git+https://github.com/thierry-martinez/redirect"))
