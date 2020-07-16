@@ -10,6 +10,7 @@
 (homepage "https://github.com/thierry-martinez/redirect")
 (bug_reports "https://github.com/thierry-martinez/redirect")
 (documentation "https://github.com/thierry-martinez/redirect")
+(version "0.1.1")
 
 (package
  (name redirect)
