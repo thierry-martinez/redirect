@@ -33,7 +33,19 @@ val output_channel_to_the_end :
   ?chunk_size:int -> out_channel -> in_channel -> unit
 (** [output_channel_to_the_end ~chunk_size out_chan in_chan] reads [in_chan] up
     to reaching end of file and outputs the contents read to [out_chan].
-    [chan] is read by blocks of [chunk_size] bytes, [1024] by default.
+    [in_chan] is read by blocks of [chunk_size] bytes, [1024] by default.
+*)
+
+val output_file : ?chunk_size:int -> out_channel -> string -> unit
+(** [output_file ~chunk_size out_chan filename] outputs the contents of the file
+    [filename] to [out_chan].
+    The file is read by blocks of [chunk_size] bytes, [1024] by default.
+*)
+
+val copy_file : ?chunk_size:int -> string -> string -> unit
+(** [output_file ~chunk_size source target] copies the file [source] into
+    the file [target].
+    The file is read by blocks of [chunk_size] bytes, [1024] by default.
 *)
 
 val with_temp_file :

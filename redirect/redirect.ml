@@ -37,6 +37,16 @@ let output_channel_to_the_end ?(chunk_size = 1024) out_channel in_channel =
         loop () in
   loop ()
 
+let output_file ?chunk_size out_channel filename =
+  let in_channel = open_in filename in
+  read_and_close in_channel (fun () ->
+    output_channel_to_the_end ?chunk_size out_channel in_channel)
+
+let copy_file ?chunk_size source target =
+  let out_channel = open_out target in
+  write_and_close out_channel (fun () ->
+    output_file ?chunk_size out_channel source)
+
 let with_temp_file ?(prefix = "temp") ?(suffix = "tmp") contents f =
   let (file, channel) = Filename.open_temp_file prefix suffix in
   Fun.protect begin fun () ->
