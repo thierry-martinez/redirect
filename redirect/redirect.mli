@@ -36,6 +36,13 @@ val output_channel_to_the_end :
     [in_chan] is read by blocks of [chunk_size] bytes, [1024] by default.
 *)
 
+val string_of_channel :
+  ?buffer_size:int -> ?chunk_size:int -> in_channel -> string
+
+val add_file : ?chunk_size:int -> Buffer.t -> string -> unit
+
+val string_of_file : ?buffer_size:int -> ?chunk_size:int -> string -> string
+
 val output_file : ?chunk_size:int -> out_channel -> string -> unit
 (** [output_file ~chunk_size out_chan filename] outputs the contents of the file
     [filename] to [out_chan].

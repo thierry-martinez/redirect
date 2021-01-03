@@ -37,6 +37,21 @@ let output_channel_to_the_end ?(chunk_size = 1024) out_channel in_channel =
         loop () in
   loop ()
 
+let string_of_channel ?(buffer_size = 4097) ?chunk_size channel =
+  let buffer = Buffer.create buffer_size in
+  add_channel_to_the_end ?chunk_size buffer channel;
+  Buffer.contents buffer
+
+let add_file ?chunk_size buffer filename =
+  let channel = open_in filename in
+  read_and_close channel (fun () ->
+    add_channel_to_the_end ?chunk_size buffer channel)
+
+let string_of_file ?buffer_size ?chunk_size filename =
+  let channel = open_in filename in
+  read_and_close channel (fun () ->
+    string_of_channel ?buffer_size ?chunk_size channel)
+
 let output_file ?chunk_size out_channel filename =
   let in_channel = open_in filename in
   read_and_close in_channel (fun () ->
