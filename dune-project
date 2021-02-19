@@ -19,7 +19,7 @@
 Redirect channels to files, strings...
 ")
  (depends
-  (ocaml (and (>= 4.03.0) (< 4.12.0)))
+  (ocaml (and (>= 4.03.0)))
   (dune (>= 1.11.0))
   (stdcompat (>= 10))
   (odoc (and :with-doc (>= 1.5.1)))))
